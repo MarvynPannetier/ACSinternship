@@ -1,0 +1,34 @@
+* C:\Users\t0264096\Documents\Stage Marvyn Pannetier\LTspice\PUSH PULL PMOS NMOS WITH FINAL FILTER.asc
+V1 Vcc 0 7
+Rload sin N006 140
+R1 N002 N005 10 tol=1 pwr=0.125
+Lload N006 sin2 22m
+L2 N009 N010 100µ Ipk=0.27 Rser=1.4 Rpar=60474.7 Cpar=0
+C2 N008 0 0.22µ V=16 Irms=2.52 Rser=0.0526265 Lser=0 mfg="KEMET" pn="C0805C224K4RAC" type="X7R"
+R2 N010 N008 10 tol=1 pwr=0.125
+C3 sin N002 0.22µ V=16 Irms=12.5 Rser=0.00978387 Lser=0 mfg="KEMET" pn="C0805C155K4RAC" type="X7R"
+R3 sin 0 3.3k tol=1 pwr=0.5
+R4 0 sin2 3.3k tol=1 pwr=0.5
+L3 N002 N001 100µ Ipk=0.27 Rser=1.4 Rpar=60474.7 Cpar=0
+C4 0 N002 0.22µ V=16 Irms=8.02 Rser=0.00562267 Lser=0 mfg="KEMET" pn="C0805C335K4PAC" type="X5R"
+V6 N003 N004 PWL file=PhaseA-H.txt
+V7 N007 0 PWL file=PhaseA-L.txt
+V2 N011 N012 PWL file=PhaseB-H.txt
+V3 N013 0 PWL file=PhaseB-L.txt
+XU1 Vcc N003 N004 DMN3032LFDBWQ
+XU2 N004 N007 0 DMN3032LFDBWQ
+XU3 Vcc N011 N012 DMN3032LFDBWQ
+XU4 N012 N013 0 DMN3032LFDBWQ
+C1 N010 0 0.22µ V=16 Irms=8.02 Rser=0.00562267 Lser=0 mfg="KEMET" pn="C0805C335K4PAC" type="X5R"
+C5 0 N005 0.22µ V=16 Irms=2.52 Rser=0.0526265 Lser=0 mfg="KEMET" pn="C0805C224K4RAC" type="X7R"
+C6 sin2 N010 1.5µ V=16 Irms=12.5 Rser=0.00978387 Lser=0 mfg="KEMET" pn="C0805C155K4RAC" type="X7R"
+V4 N001 N009 AC 1
+.ac dec 1000 0.1 1meg
+.four 5k 20 -1 V(sin) V(sin2)
+;tran 40m
+* LPF
+* HPF
+* Load
+.lib C:\Users\t0264096\Downloads\DMN3032LFDBWQ.spice.txt
+.backanno
+.end
